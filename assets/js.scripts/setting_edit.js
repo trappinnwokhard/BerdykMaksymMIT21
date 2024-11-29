@@ -16,15 +16,24 @@ const selectors = {
 }
 
 
+//  CURRENT LIST OF FORMULAS
 const currentSettings  = document.querySelector(selectors.formulasFolder);
+//  SAVED LIST OF FORMULAS
 const savedSettings = currentSettings.cloneNode(currentSettings);
 
 const empty = document.querySelector(selectors.emptyState);
 const table = document.querySelector(selectors.table)
 
+// CURRENT URL
 const url = new URL(window.location);
 
 
+// INITIALIZING THE EMTY STATE
+
+
+
+
+//  ADDING EMPTY STATE HIDDEN IF LIST OF FORMULAS IS NOT EMPTY
 
 function emptyStateFunction( x ){
     if (x.childElementCount == 1) {
@@ -39,6 +48,9 @@ function emptyStateFunction( x ){
 emptyStateFunction(currentSettings);
 
 
+
+
+// JSON FROM HTML FILE
 const initialState = document.querySelector(selectors.stateJson).textContent;
 const state = JSON.parse(initialState);
 
@@ -51,6 +63,8 @@ document.addEventListener('click', (event) => {
     }
 });
 
+
+// EDIT
 document.addEventListener('click', (event) => {
     if (event.target.classList.contains(selectors.pen)) {
         if (document.querySelector(selectors.textInputforCreatingFormula).value == "") {
@@ -100,10 +114,13 @@ document.addEventListener('click', (event) => {
 const saveButton = document.querySelector(selectors.save);
 const discardButton = document.querySelector(selectors.discard);
 
+
+// SAVE
 saveButton.addEventListener('click', () => {
     savedSettings.innerHTML = currentSettings.innerHTML;
     console.log(savedSettings);
 })
+// DISCARD
 discardButton.addEventListener('click', () => {
     document.querySelector(selectors.formulasFolder).innerHTML = savedSettings.innerHTML;
     console.log(document.querySelector(selectors.formulasFolder));
@@ -111,6 +128,8 @@ discardButton.addEventListener('click', () => {
 })
 
 
+
+// URL MANIPULATION
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains(selectors.link)) {
 
@@ -119,11 +138,11 @@ document.addEventListener('click', (e) => {
         const children = Array.from(parent.children); // children of formulaFolder
         const index = children.indexOf(child); // index of formula template
         console.log(index);
-        const urlToMerge = "http://127.0.0.1:5500/WEB-Shopify--MIT-21-BerdykMaksym/";
+        const urlToMerge = "https://github.com/trappinnwokhard/BerdykMaksymMIT21";
         console.log
         window.location.href = `${urlToMerge}formula.html${url.search}&id=${index}`;
     }
 })
 document.querySelector(selectors.home).addEventListener('click', () => {
-    window.location.href = "http://127.0.0.1:5500/WEB-Shopify--MIT-21-BerdykMaksym/";
+    window.location.href = "https://github.com/trappinnwokhard/BerdykMaksymMIT21";
 })
