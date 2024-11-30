@@ -4,7 +4,7 @@ const selectors = {
     deleteFormula: 'trash',
     createFormula: 'create_formula',
     pen: 'pen',
-    textInputforCreatingFormula: '.text_input',
+    textInputforCreatingFormula: '.text_input_lol',
     discard: '.discard',
     save: '.save',
     formulasFolder: '#formulasFolder',
@@ -14,6 +14,25 @@ const selectors = {
     table: '.formulas_s',
     home: '#home'
 }
+
+
+function getState() {
+    const data = localStorage.getItem('state');
+    return JSON.parse(data);
+}
+function updateState(state) {
+    localStorage.setItem('state', JSON.stringify(state));
+}
+
+const state = getState();
+if (state){
+    console.log("#NICE# ---> state.json parsed from localeStorage!!!")
+}
+
+
+
+
+
 
 
 //  CURRENT LIST OF FORMULAS
@@ -51,8 +70,8 @@ emptyStateFunction(currentSettings);
 
 
 // JSON FROM HTML FILE
-const initialState = document.querySelector(selectors.stateJson).textContent;
-const state = JSON.parse(initialState);
+// const initialState = document.querySelector(selectors.stateJson).textContent;
+// const state = JSON.parse(initialState);
 
 
 document.addEventListener('click', (event) => {
@@ -139,7 +158,7 @@ document.addEventListener('click', (e) => {
         const index = children.indexOf(child); // index of formula template
         console.log(index);
         const urlToMerge = "https://github.com/trappinnwokhard/BerdykMaksymMIT21";
-        console.log
+        // window.location.href = `${urlToMerge}formula.html${url.search}&id=${index}#${e.target.innerText}`;
         window.location.href = `${urlToMerge}formula.html${url.search}&id=${index}`;
     }
 })
